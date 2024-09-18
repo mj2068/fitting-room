@@ -1,6 +1,10 @@
 main {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+
+  background-color: pink;
 }
 
 .ui-container {
@@ -29,6 +33,7 @@ main {
   &.bottom {
     bottom: 8px;
   }
+}
 
 .flex {
   display: flex;
@@ -40,4 +45,16 @@ main {
 
 .divider span {
   font-weight: bold;
+}
+
+.desc-container {
+  padding: 0 64px;
+  margin-bottom: 128px;
+}
+
+.image {
+  border-radius: 4px;
+}
+.image-desc {
+  font-size: 0.8em;
 }
