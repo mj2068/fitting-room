@@ -1,4 +1,43 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-container {
+  background-color: #effbff;
+}
+
 .canvas-container {
   width: 600px;
   height: 600px;
+  position: relative;
+}
+
+.canvas-hud-container {
+  position: absolute;
+  z-index: 9;
+
+  &.top {
+    top: 8px;
+  }
+  &.left {
+    left: 8px;
+  }
+  &.right {
+    right: 8px;
+  }
+  &.bottom {
+    bottom: 8px;
+  }
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.divider span {
+  font-weight: bold;
 }
