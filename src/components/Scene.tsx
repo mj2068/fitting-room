@@ -1,18 +1,11 @@
 import {
-  Grid,
-  Helper,
   OrbitControls,
   PerspectiveCamera,
   SoftShadows,
 } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
 import MannequinModel, { Poses, Purses } from "./MannequinModel";
 import {
-  DirectionalLightHelper,
-  PointLightHelper,
   Vector3,
-  Event,
-  DoubleSide,
 } from "three";
 
 export default function Scene({

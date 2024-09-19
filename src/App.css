@@ -1,13 +1,24 @@
+#root {
+  position: relative;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 1000px;
 
-  background-color: pink;
+  /* background-color: pink; */
 }
 
 .ui-container {
+  height: 600px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 16px;
   background-color: #effbff;
 }
 
@@ -49,12 +60,48 @@ main {
 
 .desc-container {
   padding: 0 64px;
-  margin-bottom: 128px;
+  margin-bottom: 64px;
 }
 
 .image {
   border-radius: 4px;
 }
 .image-desc {
-  font-size: 0.8em;
+  font-size: 0.8rem;
+}
+
+.auxiliary {
+  font-size: 0.8rem;
+  color: grey;
+  margin-top: 32px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-top: 32px;
+  /* background-color: darkgrey; */
+}
+
+.miit-container {
+  margin-top: 24px;
+  height: 24px;
+  color: darkgrey;
+}
+
+a.miit-link {
+  text-decoration: unset;
+  color: lightgray;
+}
+
+header {
+  /* height: 64px; */
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-left: 40px;
+  /* display: flex; */
+  /* align-items: center; */
 }

@@ -1,22 +1,14 @@
 import { Canvas } from "@react-three/fiber";
 import "./App.css";
 import Scene from "./components/Scene";
-import { CSSProperties, Suspense, useState } from "react";
+import { Suspense, useState } from "react";
 import { Poses, Purses } from "./components/MannequinModel";
-import {
-  Button,
-  Divider,
-  Flex,
-  FloatButton,
-  Image,
-  List,
-  Popover,
-  Radio,
-  Segmented,
-  Space,
-} from "antd";
+import { Button, Divider, Flex, Image, Popover, Radio, Space } from "antd";
 import { Vector3 } from "three";
 import { Html } from "@react-three/drei";
+import Description from "./components/Description";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 const purses = [
   {
@@ -26,7 +18,7 @@ const purses = [
       {
         id: "gucci",
         label: "浅粉",
-        image: "/src/assets/render_purse_gucci.png",
+        image: "render_purse_gucci.png",
       },
     ],
   },
@@ -34,21 +26,21 @@ const purses = [
     id: "square",
     label: "博尔萨皮拎包",
     colors: [
-      { id: "black", label: "黑", image: "/src/assets/render_purse_black.png" },
-      { id: "blue", label: "蓝", image: "/src/assets/render_purse_blue.png" },
+      { id: "black", label: "黑", image: "render_purse_black.png" },
+      { id: "blue", label: "蓝", image: "render_purse_blue.png" },
       {
         id: "brown",
         label: "棕红",
-        image: "/src/assets/render_purse_brown.png",
+        image: "render_purse_brown.png",
       },
     ],
   },
 ];
 
 const shoes = [
-  { id: "sneaker", label: "板鞋", image: "/src/assets/render_sneaker.png" },
-  { id: "highheel", label: "高跟鞋", image: "/src/assets/render_highheel.png" },
-  { id: "kids", label: "休闲平底鞋", image: "/src/assets/render_kids.png" },
+  { id: "sneaker", label: "板鞋", image: "render_sneaker.png" },
+  { id: "highheel", label: "高跟鞋", image: "render_highheel.png" },
+  { id: "kids", label: "休闲平底鞋", image: "render_kids.png" },
 ];
 
 const camPosFull = new Vector3(-0.38, 1.14, 2.68);
@@ -60,8 +52,8 @@ const camTargetBody = new Vector3(0, 0.99, 0);
 const camTargetFoot = new Vector3(0, 0.2, 0);
 
 function App() {
-  const [selectedShoe, setSelectedShoe] = useState(shoes[1].id);
-  const [selectedPurse, setSelectedPurse] = useState(null);
+  const [selectedShoe, setSelectedShoe] = useState<Poses>(shoes[1].id as Poses);
+  const [selectedPurse, setSelectedPurse] = useState<Purses>(null);
 
   const [camPos, setCamPos] = useState(camPosFull);
   const [camTarget, setCamTarget] = useState(camTargetFull);
@@ -70,19 +62,12 @@ function App() {
 
   return (
     <>
+      <header>
+        <Header />
+      </header>
       <main>
         <Flex>
-          <div
-            className="ui-container flex column"
-            style={{
-              // minWidth: "300px",
-              height: "600px",
-              boxSizing: "border-box",
-              overflowY: "scroll",
-              overflowX: "hidden",
-              padding: "16px",
-            }}
-          >
+          <div className="ui-container flex column">
             <h3>物品列表</h3>
             <Divider orientation="left" className="divider">
               服装
@@ -90,7 +75,16 @@ function App() {
             <Radio.Group>
               <Flex justify="space-between" align="center">
                 <Radio>点纹棉裙</Radio>
-                <Image src="/src/assets/render_polka_dress.png" width={64} />
+                <Image
+                  className="image"
+                  src={
+                    new URL(
+                      "/src/assets/render_polka_dress.png",
+                      import.meta.url,
+                    ).href
+                  }
+                  width={64}
+                />
               </Flex>
             </Radio.Group>
 
@@ -106,8 +100,11 @@ function App() {
                   <Flex key={shoe.id} justify="space-between" align="center">
                     <Radio value={shoe.id}>{shoe.label}</Radio>
                     <Image
-                      style={{ borderRadius: 4, textAlign: "right" }}
-                      src={shoe.image}
+                      className="image"
+                      src={
+                        new URL(`/src/assets/${shoe.image}`, import.meta.url)
+                          .href
+                      }
                       width={64}
                     />
                   </Flex>
@@ -142,9 +139,14 @@ function App() {
                       <Radio key={color.id} value={color.id}>
                         <Flex vertical align="center">
                           <Image
-                            src={color.image}
+                            className="image"
+                            src={
+                              new URL(
+                                `/src/assets/${color.image}`,
+                                import.meta.url,
+                              ).href
+                            }
                             width={48}
-                            style={{ borderRadius: 4 }}
                             onClick={(e) => e.preventDefault()}
                           />
                           {color.label}
@@ -162,7 +164,7 @@ function App() {
               <Space direction="vertical">
                 <Button
                   type="default"
-                  onClick={(_) => {
+                  onClick={() => {
                     setCamPos(camPosFull.clone());
                     setCamTarget(camTargetFull.clone());
                   }}
@@ -170,7 +172,7 @@ function App() {
                   远景
                 </Button>
                 <Button
-                  onClick={(_) => {
+                  onClick={() => {
                     setCamPos(camPosBody.clone());
                     setCamTarget(camTargetBody.clone());
                   }}
@@ -178,7 +180,7 @@ function App() {
                   身体
                 </Button>
                 <Button
-                  onClick={(_) => {
+                  onClick={() => {
                     setCamTarget(camTargetFoot.clone());
                     setCamPos(camPosFoot.clone());
                   }}
@@ -229,86 +231,11 @@ function App() {
         </Flex>
 
         <Divider />
-        <div className="desc-container">
-          <p>
-            <b>开发说明</b>
-          </p>
-          <p>
-            依托于React成熟的渲染机制和普及的开发生态，three.js对WebGL完整的实现，fiber对three.js良好的React化封装，使得3D
-            Web应用开发模板代码大大精简，效率提高，门槛降低。这一组合是精品3D应用开发的绝配和不二之选。
-          </p>
-          <p>
-            仓库地址：<a>https://...</a>
-          </p>
-          <p>
-            主要技术栈：主框架React、3D实现@react-three/fiber，UI组件库Ant
-            Design
-          </p>
-          <p>开发流程：</p>
-          <ul>
-            <li>初步设计</li>
-            <li>收集资源</li>
-            <li>
-              对3D模型进行整理、修复，为web开发做相应的转换和适应化
-              <Flex>
-                <Space>
-                  <Flex vertical align="center">
-                    <Image
-                      className="image"
-                      src="/src/assets/blender_modeling.jpg"
-                      style={{
-                        maxHeight: "240px",
-                        height: "auto",
-                      }}
-                    />
-                    <i className="image-desc">Blender模型处理</i>
-                  </Flex>
-                  <Flex vertical align="center">
-                    <Image
-                      className="image"
-                      src="/src/assets/blender_modeling_2.jpg"
-                      style={{
-                        maxHeight: "240px",
-                        height: "auto",
-                      }}
-                    />
-                    <i className="image-desc">模型简化</i>
-                  </Flex>
-                </Space>
-              </Flex>
-            </li>
-            <li>
-              代码及调试
-              <Flex>
-                <Flex vertical align="center">
-                  <Image
-                    className="image"
-                    src="/src/assets/debug_view.jpg"
-                    style={{
-                      maxHeight: "240px",
-                      height: "auto",
-                    }}
-                  />
-                  <i className="image-desc">场景调试</i>
-                </Flex>
-              </Flex>
-            </li>
-            <li>打包构建，及后续配置</li>
-          </ul>
-          <p>工作量占比估算：</p>
-          <ul>
-            <li>设计及资源准备：20%</li>
-            <li>3D模型处理：40%</li>
-            <li>程序结构及编码：30%</li>
-            <li>部署：10%</li>
-          </ul>
-          <p>
-            扩展开发可能性：其中一个进阶开发的可能性为材质动态物理模拟。但实现难度的提高和对客户端性能的影响，实际开发时需要根据需求做好可行性评定和测试。以下视频为渲染效果参考：
-          </p>
-          <video src="/src/assets/0001-0096.mkv" height={300} controls />
-        </div>
+        <Description />
+        <Divider />
       </main>
-      <footer>...</footer>
+
+      <Footer />
     </>
   );
 }
