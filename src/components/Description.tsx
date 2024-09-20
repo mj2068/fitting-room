@@ -44,7 +44,7 @@ export default function Description() {
               />
               <ImageWithTitle
                 fileName="blender_rigging.gif"
-                title="模型骨架及动作姿态"
+                title="模型骨架及姿态"
               />
             </Flex>
           </Flex>

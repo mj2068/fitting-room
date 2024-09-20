@@ -61,7 +61,7 @@ function App() {
   const [openHelp, setOpenHelp] = useState(false);
 
   return (
-    <>
+    <div id="app" className="app">
       <header>
         <Header />
       </header>
@@ -232,11 +232,10 @@ function App() {
 
         <Divider />
         <Description />
-        <Divider />
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

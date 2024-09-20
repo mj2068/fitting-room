@@ -1,11 +1,5 @@
-:root {
-  --bg-size: 128px;
-}
-
 body {
   margin: 0;
-  display: flex;
-  justify-content: center;
 
   font-family:
     system-ui,
@@ -20,13 +14,13 @@ body {
     "Helvetica Neue",
     sans-serif;
 
-  background-size: var(--bg-size);
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.85),
-      rgba(255, 255, 255, 0.85)
-    ),
-    url(/src/assets/demo_repeat_bg_trans.png);
-  animation: moving-bg 20s linear infinite;
+  /* background-size: var(--bg-size); */
+  /* background-image: linear-gradient( */
+  /*     rgba(255, 255, 255, 0.85), */
+  /*     rgba(255, 255, 255, 0.85) */
+  /*   ), */
+  /*   url(/src/assets/demo_repeat_bg_trans.png); */
+  /* animation: moving-bg 20s linear infinite; */
 }
 
 @keyframes moving-bg {

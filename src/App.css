@@ -1,8 +1,47 @@
+:root {
+  --bg-size: 160px;
+}
+
 #root {
   position: relative;
-  min-height: 100vh;
-  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
 
+/* this ::before is for the moving background effect */
+#root::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--bg-size) * -1);
+  top: 0;
+  width: calc(100% + var(--bg-size));
+  height: calc(100% + var(--bg-size));
+
+  background:
+    linear-gradient(#fffd, #fffd),
+    url(/src/assets/demo_repeat_bg_trans.png) 0 / var(--bg-size);
+
+  animation: bg-moving 18s linear infinite;
+}
+
+@keyframes bg-moving {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(var(--bg-size), calc(var(--bg-size) * -1));
+  }
+}
+
+#app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  background-color: white;
+  max-width: 1000px;
   box-shadow: 0px 0px 8px lightgrey;
 }
 
@@ -10,9 +49,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1000px;
-
-  /* background-color: pink; */
 }
 
 .ui-container {
@@ -68,18 +104,19 @@ main {
   color: grey;
 }
 
-.divider span {
-  font-weight: bold;
-}
-
 .image {
   border-radius: 4px;
+}
+
+.divider span {
+  font-weight: bold;
 }
 
 .desc-container {
   padding-left: 40px;
   padding-right: 40px;
-  padding-bottom: 64px;
+  margin-top: 64px;
+  margin-bottom: 64px;
 
   & .image {
     max-height: 240px;
@@ -87,13 +124,17 @@ main {
 }
 
 footer {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 0.8rem;
   margin-top: 64px;
-  /* background-color: darkgrey; */
+  margin-bottom: 4px;
+}
+
+.copyright {
+  margin-top: 8px;
 }
 
 .miit-container {
@@ -107,10 +148,11 @@ a.miit-link {
 }
 
 header {
+  width: 100%;
   /* height: 64px; */
   margin-top: 16px;
   margin-bottom: 8px;
-  padding-left: 40px;
+  padding-left: 80px;
   /* display: flex; */
   /* align-items: center; */
 }
