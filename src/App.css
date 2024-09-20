@@ -2,6 +2,8 @@
   position: relative;
   min-height: 100vh;
   background-color: #fff;
+
+  box-shadow: 0px 0px 8px lightgrey;
 }
 
 main {
@@ -54,26 +56,34 @@ main {
   flex-direction: column;
 }
 
-.divider span {
-  font-weight: bold;
+.no-margin-bot {
+  margin-bottom: 0;
 }
 
-.desc-container {
-  padding: 0 64px;
-  margin-bottom: 64px;
+.small-text {
+  font-size: 0.8rem;
+}
+
+.grey-text {
+  color: grey;
+}
+
+.divider span {
+  font-weight: bold;
 }
 
 .image {
   border-radius: 4px;
 }
-.image-desc {
-  font-size: 0.8rem;
-}
 
-.auxiliary {
-  font-size: 0.8rem;
-  color: grey;
-  margin-top: 32px;
+.desc-container {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 64px;
+
+  & .image {
+    max-height: 240px;
+  }
 }
 
 footer {
@@ -82,13 +92,12 @@ footer {
   justify-content: center;
   align-items: center;
   font-size: 0.8rem;
-  margin-top: 32px;
+  margin-top: 64px;
   /* background-color: darkgrey; */
 }
 
 .miit-container {
-  margin-top: 24px;
-  height: 24px;
+  margin-top: 8px;
   color: darkgrey;
 }
 
@@ -100,7 +109,7 @@ a.miit-link {
 header {
   /* height: 64px; */
   margin-top: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   padding-left: 40px;
   /* display: flex; */
   /* align-items: center; */

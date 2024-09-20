@@ -1,4 +1,5 @@
 import { Flex, Image, Space } from "antd";
+import ImageWithTitle from "./ImageWithTitle";
 
 export default function Description() {
   return (
@@ -25,57 +26,33 @@ export default function Description() {
         <li>收集资源</li>
         <li>
           对3D模型等原始资源进行整理、修复，为web开发做相应适应化转换
-          <Flex>
-            <Space>
-              <Flex vertical align="center">
-                <Image
-                  className="image"
-                  src={
-                    new URL("/src/assets/blender_modeling.jpg", import.meta.url)
-                      .href
-                  }
-                  style={{
-                    maxHeight: "240px",
-                    height: "auto",
-                  }}
-                />
-                <i className="image-desc">Blender模型处理</i>
-              </Flex>
-              <Flex vertical align="center">
-                <Image
-                  className="image"
-                  src={
-                    new URL(
-                      "/src/assets/blender_modeling_2.jpg",
-                      import.meta.url,
-                    ).href
-                  }
-                  style={{
-                    maxHeight: "240px",
-                    height: "auto",
-                  }}
-                />
-                <i className="image-desc">模型简化</i>
-              </Flex>
-            </Space>
+          <Flex vertical gap={8}>
+            <Flex>
+              <ImageWithTitle
+                fileName="blender_modeling.jpg"
+                title="Blender处理模型"
+              />
+            </Flex>
+            <Flex wrap gap={8}>
+              <ImageWithTitle
+                fileName="blender_fix_texture.jpg"
+                title="贴图修复"
+              />
+              <ImageWithTitle
+                fileName="blender_modeling_2.jpg"
+                title="模型简化"
+              />
+              <ImageWithTitle
+                fileName="blender_rigging.gif"
+                title="模型骨架及动作姿态"
+              />
+            </Flex>
           </Flex>
         </li>
         <li>
           代码及调试
           <Flex>
-            <Flex vertical align="center">
-              <Image
-                className="image"
-                src={
-                  new URL("/src/assets/debug_view.jpg", import.meta.url).href
-                }
-                style={{
-                  maxHeight: "240px",
-                  height: "auto",
-                }}
-              />
-              <i className="image-desc">场景调试</i>
-            </Flex>
+            <ImageWithTitle fileName="debug_view.jpg" title="场景调试" />
           </Flex>
         </li>
         <li>打包构建，及后续配置</li>
@@ -96,7 +73,7 @@ export default function Description() {
         controls
       />
 
-      <div className="auxiliary">
+      <div className="small-text grey-text" style={{ marginTop: "32px" }}>
         <p>3D模型资源引用：</p>
         <ul>
           <li>

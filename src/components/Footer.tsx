@@ -1,11 +1,10 @@
 export default function Footer() {
   return (
     <footer>
-      <div>
-        <a href="https://zizaimai.space/demo/">zizaimai</a>
-      </div>
+      <a className="grey-text" href="https://zizaimai.space/demo/">
+        zizaimai.space
+      </a>
       <div className="miit-container">
-        备案号：
         <a
           className="miit-link"
           href="http://beian.miit.gov.cn/"
