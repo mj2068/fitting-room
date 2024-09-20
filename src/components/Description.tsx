@@ -11,7 +11,10 @@ export default function Description() {
         Web应用开发模板代码大大精简，效率提高，门槛降低。这一组合是精品3D应用开发的绝配和不二之选。
       </p>
       <p>
-        仓库地址：<a>https://...</a>
+        仓库地址：
+        <a href="https://github.com/mj2068/fitting-room/" target="_blank">
+          https://github.com/mj2068/fitting-room/
+        </a>
       </p>
       <p>
         主要技术栈：主框架React、3D实现@react-three/fiber、UI组件库Ant Design
@@ -63,7 +66,9 @@ export default function Description() {
             <Flex vertical align="center">
               <Image
                 className="image"
-                src={new URL("/src/assets/debug_view.jpg", import.meta.url).href}
+                src={
+                  new URL("/src/assets/debug_view.jpg", import.meta.url).href
+                }
                 style={{
                   maxHeight: "240px",
                   height: "auto",
