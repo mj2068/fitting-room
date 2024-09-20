@@ -1,4 +1,4 @@
-import { Flex, Image, Space } from "antd";
+import { Flex } from "antd";
 import ImageWithTitle from "./ImageWithTitle";
 
 export default function Description() {
