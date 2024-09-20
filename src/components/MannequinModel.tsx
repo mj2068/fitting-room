@@ -95,7 +95,7 @@ export default function Model({
   ...props
 }: JSX.IntrinsicElements["group"] & { pose?: Poses; purse?: Purses }) {
   const group = React.useRef<THREE.Group>(null);
-  const { scene, animations } = useGLTF("mannequin2-transformed.glb");
+  const { scene, animations } = useGLTF("models/mannequin2-transformed.glb");
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone) as GLTFResult;
   const { actions, mixer } = useAnimations(animations as GLTFAction[], group);
@@ -357,7 +357,7 @@ export default function Model({
   );
 }
 
-useGLTF.preload("mannequin2-transformed.glb");
+useGLTF.preload("models/mannequin2-transformed.glb");
 
 export type Poses = "sneaker" | "highheel" | "kids";
 export type Purses = null | "gucci" | "black" | "blue" | "brown";

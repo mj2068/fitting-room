@@ -1,3 +1,7 @@
+:root {
+  --bg-size: 128px;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -16,13 +20,13 @@ body {
     "Helvetica Neue",
     sans-serif;
 
-  /* background-size: 128px; */
-  /* background-image: linear-gradient( */
-  /*     rgba(255, 255, 255, 0.7), */
-  /*     rgba(255, 255, 255, 0.7) */
-  /*   ), */
-  /*   url(/src/assets/demo_repeat_bg_trans.png); */
-  /* animation: moving-bg 10s linear infinite; */
+  background-size: var(--bg-size);
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.85)
+    ),
+    url(/src/assets/demo_repeat_bg_trans.png);
+  animation: moving-bg 10s linear infinite;
 }
 
 @keyframes moving-bg {
@@ -30,6 +34,6 @@ body {
     background-position: 0 0;
   }
   to {
-    background-position: 255px -255px;
+    background-position: var(--bg-size) calc(var(--bg-size) * -1);
   }
 }
