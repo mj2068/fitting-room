@@ -1,5 +1,5 @@
 :root {
-  --bg-size: 160px;
+  --bg-size: 180px;
 }
 
 #root {
@@ -18,9 +18,8 @@
   width: calc(100% + var(--bg-size));
   height: calc(100% + var(--bg-size));
 
-  background:
-    linear-gradient(#fffd, #fffd),
-    url(/src/assets/demo_repeat_bg.png) 0 / var(--bg-size);
+  background: url(/src/assets/demo_repeat_bg.png) 0 / var(--bg-size);
+  filter: opacity(0.6) blur(1px);
 
   animation: bg-moving 30s linear infinite;
 }
@@ -58,7 +57,7 @@ main {
   overflow-x: hidden;
   padding: 16px;
   /* background: linear-gradient(white, blue) */
-    background-color: #e2eef755;
+  background-color: #e2eef755;
 }
 
 .canvas-container {
