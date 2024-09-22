@@ -9,6 +9,7 @@ import { Html } from "@react-three/drei";
 import Description from "./components/Description";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Scrollbars from "react-custom-scrollbars-2";
 
 const purses = [
   {
@@ -68,95 +69,99 @@ function App() {
       <main>
         <Flex>
           <div className="ui-container flex column">
-            <h3>物品列表</h3>
-            <Divider orientation="left" className="divider">
-              服装
-            </Divider>
-            <Radio.Group>
-              <Flex justify="space-between" align="center">
-                <Radio>点纹棉裙</Radio>
-                <Image
-                  className="image"
-                  src={
-                    new URL(
-                      "/src/assets/render_polka_dress.png",
-                      import.meta.url,
-                    ).href
-                  }
-                  width={64}
-                />
-              </Flex>
-            </Radio.Group>
+            <Scrollbars style={{ width: "100%" }}>
+              <h4>物品列表</h4>
 
-            <Divider orientation="left" className="divider">
-              鞋
-            </Divider>
-            <Radio.Group
-              value={selectedShoe}
-              onChange={(e) => setSelectedShoe(e.target.value)}
-            >
-              <Space direction="vertical" style={{ width: "100%" }}>
-                {shoes.map((shoe) => (
-                  <Flex key={shoe.id} justify="space-between" align="center">
-                    <Radio value={shoe.id}>{shoe.label}</Radio>
-                    <Image
-                      className="image"
-                      src={
-                        new URL(`/src/assets/${shoe.image}`, import.meta.url)
-                          .href
-                      }
-                      width={64}
-                    />
+              <Divider orientation="left" className="divider">
+                服装
+              </Divider>
+              <Radio.Group>
+                <Flex justify="space-between" align="center">
+                  <Radio>点纹棉裙</Radio>
+                  <Image
+                    className="image"
+                    src={
+                      new URL(
+                        "/src/assets/render_polka_dress.png",
+                        import.meta.url,
+                      ).href
+                    }
+                    width={64}
+                  />
+                </Flex>
+              </Radio.Group>
+
+              <Divider orientation="left" className="divider">
+                鞋
+              </Divider>
+              <Radio.Group
+                value={selectedShoe}
+                onChange={(e) => setSelectedShoe(e.target.value)}
+              >
+                <Space direction="vertical">
+                  {shoes.map((shoe) => (
+                    <Flex key={shoe.id} justify="space-between" align="center">
+                      <Radio value={shoe.id}>{shoe.label}</Radio>
+                      <Image
+                        className="image"
+                        src={
+                          new URL(`/src/assets/${shoe.image}`, import.meta.url)
+                            .href
+                        }
+                        width={64}
+                      />
+                    </Flex>
+                  ))}
+                </Space>
+              </Radio.Group>
+
+              <Divider orientation="left" className="divider">
+                <span>饰品</span>
+              </Divider>
+              <Space direction="vertical">
+                <Radio.Group
+                  value={selectedPurse === null ? "" : selectedPurse}
+                  onChange={(e) =>
+                    setSelectedPurse(
+                      e.target.value === "" ? null : e.target.value,
+                    )
+                  }
+                >
+                  <Radio value={""}>无</Radio>
+                </Radio.Group>
+                {purses.map((purse) => (
+                  <Flex key={purse.id} vertical>
+                    <span>{purse.label}</span>
+                    <Radio.Group
+                      value={selectedPurse}
+                      onChange={(e) => setSelectedPurse(e.target.value)}
+                      className="pad-l"
+                    >
+                      {purse.colors.map((color) => (
+                        <Radio key={color.id} value={color.id}>
+                          <Flex vertical align="center">
+                            <Image
+                              className="image"
+                              src={
+                                new URL(
+                                  `/src/assets/${color.image}`,
+                                  import.meta.url,
+                                ).href
+                              }
+                              width={48}
+                              onClick={(e) => e.preventDefault()}
+                            />
+                            {color.label}
+                          </Flex>
+                        </Radio>
+                      ))}
+                    </Radio.Group>
                   </Flex>
                 ))}
               </Space>
-            </Radio.Group>
 
-            <Divider orientation="left" className="divider">
-              <span>饰品</span>
-            </Divider>
-
-            <Space direction="vertical">
-              <Radio.Group
-                value={selectedPurse === null ? "" : selectedPurse}
-                onChange={(e) =>
-                  setSelectedPurse(
-                    e.target.value === "" ? null : e.target.value,
-                  )
-                }
-              >
-                <Radio value={""}>无</Radio>
-              </Radio.Group>
-              {purses.map((purse) => (
-                <Flex key={purse.id} vertical>
-                  <span>{purse.label}</span>
-                  <Radio.Group
-                    value={selectedPurse}
-                    onChange={(e) => setSelectedPurse(e.target.value)}
-                    style={{ paddingLeft: "16px" }}
-                  >
-                    {purse.colors.map((color) => (
-                      <Radio key={color.id} value={color.id}>
-                        <Flex vertical align="center">
-                          <Image
-                            className="image"
-                            src={
-                              new URL(
-                                `/src/assets/${color.image}`,
-                                import.meta.url,
-                              ).href
-                            }
-                            width={48}
-                            onClick={(e) => e.preventDefault()}
-                          />
-                          {color.label}
-                        </Flex>
-                      </Radio>
-                    ))}
-                  </Radio.Group>
-                </Flex>
-              ))}
-            </Space>
+              <div className="empty" style={{ height: "2rem" }} />
+            </Scrollbars>
           </div>
 
           <div className="canvas-container">
@@ -192,7 +197,7 @@ function App() {
             <div className="canvas-hud-container right bottom">
               <Popover
                 content={
-                  <div style={{ maxWidth: "190px" }}>
+                  <div style={{ maxWidth: "200px" }}>
                     <p>左侧列表选择试穿样品，点击图片预览大图；</p>
                     <p>
                       右侧场景左键旋转，右键平移，滚轮缩放，左下角远景、身体、腿部按钮切换预设镜头
@@ -231,9 +236,9 @@ function App() {
         </Flex>
 
         <Divider />
+
         <Description />
       </main>
-
       <Footer />
     </div>
   );

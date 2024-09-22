@@ -73,7 +73,7 @@ export default function Description() {
         controls
       />
 
-      <div className="small-text grey-text" style={{ marginTop: "32px" }}>
+      <div className="reference-list mar-t-4 small-text grey-text">
         <p>3D模型资源引用：</p>
         <ul>
           <li>

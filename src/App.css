@@ -19,7 +19,7 @@
   height: calc(100% + var(--bg-size));
 
   background: url(/src/assets/demo_repeat_bg.png) 0 / var(--bg-size);
-  filter: opacity(0.6) blur(1px);
+  filter: opacity(0.4) blur(1px);
 
   animation: bg-moving 30s linear infinite;
 }
@@ -51,12 +51,11 @@ main {
 }
 
 .ui-container {
+  width: 400px;
   height: 600px;
   box-sizing: border-box;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding: 16px;
-  /* background: linear-gradient(white, blue) */
+  padding-left: 2rem;
+  /* background: linear-gradient(60deg, lightblue, white); */
   background-color: #e2eef755;
 }
 
@@ -68,7 +67,7 @@ main {
 
 .canvas-hud-container {
   position: absolute;
-  z-index: 9;
+  z-index: 1;
 
   &.top {
     top: 8px;
@@ -102,6 +101,18 @@ main {
 
 .grey-text {
   color: grey;
+}
+
+.pad-l {
+  padding-left: 1rem;
+}
+
+.mar-t-2 {
+  margin-top: 2rem;
+}
+
+.mar-t-4 {
+  margin-top: 4rem;
 }
 
 .image {
@@ -152,7 +163,7 @@ header {
   /* height: 64px; */
   margin-top: 16px;
   margin-bottom: 8px;
-  padding-left: 80px;
+  padding-left: 2rem;
   /* display: flex; */
   /* align-items: center; */
 }
